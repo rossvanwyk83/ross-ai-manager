@@ -55,10 +55,13 @@ export function ContentHub({ businessId, businessName }: ContentHubProps) {
 
   const loadContent = async () => {
     try {
-      const response = await fetch(`/api/content?business=${businessId}`)
+      const response = await fetch(`/api/content-proxy?business=${businessId}`)
       if (response.ok) {
         const data = await response.json()
         setContent(data.content || [])
+        console.log('Loaded content:', data.count, 'items for', businessId)
+      } else {
+        console.error('Failed to load content:', response.status, await response.text())
       }
     } catch (error) {
       console.error('Failed to load content:', error)
