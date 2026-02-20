@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
+import { ContentViewerModal } from '@/components/content-viewer-modal'
 import { 
   FileText, 
   TrendingUp, 
@@ -338,7 +339,8 @@ export function ContentHub({ businessId, businessName }: ContentHubProps) {
                       </div>
                       <Button 
                         size="sm" 
-                        variant="outline" 
+                        variant="outline"
+                        onClick={() => setSelectedContent(item)}
                         className="w-full bg-gray-700 border-gray-600 text-gray-300 hover:bg-gray-600 hover:border-primary hover:text-white"
                       >
                         View Research
@@ -350,6 +352,12 @@ export function ContentHub({ businessId, businessName }: ContentHubProps) {
           </div>
         </TabsContent>
       </Tabs>
+
+      {/* Content Viewer Modal */}
+      <ContentViewerModal 
+        content={selectedContent} 
+        onClose={() => setSelectedContent(null)} 
+      />
     </div>
   )
 }
