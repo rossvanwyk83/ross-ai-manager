@@ -68,7 +68,7 @@ export default function AIManagerDashboard() {
       description: 'Premium digital agency co-run with Skye - creative campaigns and digital marketing',
       type: 'business',
       agents: [
-        { id: 'creative-director', name: 'Creative Director', role: 'Lead creative vision and strategy for premium digital clients', status: 'ready' }
+        { id: 'sage', name: 'Sage', role: 'Creative Director - Visionary strategist for premium TrendFarm client campaigns', status: 'ready' }
       ],
       stats: { agents: 1, active: 0, completed: 8 }
     },
@@ -78,7 +78,7 @@ export default function AIManagerDashboard() {
       description: 'App development with Tom - modern church management and community engagement',
       type: 'product',
       agents: [
-        { id: 'product-manager', name: 'Product Manager', role: 'Guide product development strategy and feature prioritization', status: 'ready' }
+        { id: 'grace', name: 'Grace', role: 'Product Manager - Community-focused strategist for ChurchOS solutions', status: 'ready' }
       ],
       stats: { agents: 1, active: 0, completed: 3 }
     },
@@ -88,10 +88,10 @@ export default function AIManagerDashboard() {
       description: 'Etsy trademark compliance scanner - prevent shop suspensions before they happen',
       type: 'product',
       agents: [
-        { id: 'marketing-factory', name: 'Marketing Asset Factory', role: 'Generate complete marketing campaigns for Etsy trademark compliance tools', status: 'ready' },
-        { id: 'compliance-specialist', name: 'Compliance Content Specialist', role: 'Create educational content about Etsy trademark compliance that ranks and converts', status: 'ready' },
-        { id: 'conversion-optimizer', name: 'Conversion Optimization Expert', role: 'Optimize landing pages, pricing copy, and conversion funnels for maximum SaaS signups', status: 'ready' },
-        { id: 'email-architect', name: 'Email Sequence Architect', role: 'Design high-converting email sequences that nurture free users into paid customers', status: 'ready' }
+        { id: 'mason', name: 'Mason', role: 'Marketing Asset Factory - Creative powerhouse specializing in complete campaigns and ad creative', status: 'ready' },
+        { id: 'clara', name: 'Clara', role: 'Compliance Content Specialist - Educational authority creating content that ranks and converts', status: 'ready' },
+        { id: 'kai', name: 'Kai', role: 'Conversion Optimizer - Data-driven expert obsessed with landing page performance', status: 'ready' },
+        { id: 'elena', name: 'Elena', role: 'Email Architect - Relationship builder designing high-converting email sequences', status: 'ready' }
       ],
       stats: { agents: 4, active: 0, completed: 2 }
     },
@@ -101,7 +101,7 @@ export default function AIManagerDashboard() {
       description: 'AI consulting division - transforming client businesses with AI automation and tools',
       type: 'consulting',
       agents: [
-        { id: 'ai-strategy-consultant', name: 'AI Strategy Consultant', role: 'Help clients transform through strategic AI implementation', status: 'ready' }
+        { id: 'quinn', name: 'Quinn', role: 'AI Strategy Consultant - Strategic thinker for SystemsFarm client transformations', status: 'ready' }
       ],
       stats: { agents: 1, active: 0, completed: 1 }
     }
