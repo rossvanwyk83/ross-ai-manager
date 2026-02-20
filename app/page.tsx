@@ -1,8 +1,9 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Bot, Briefcase, Building2, Shield, Zap, ChevronRight, FileText, TrendingUp, Calendar } from 'lucide-react'
+import { Bot, Briefcase, Building2, Shield, Zap, ChevronRight, FileText, TrendingUp, Calendar, BarChart3 } from 'lucide-react'
 import { ContentHub } from '@/components/content-hub'
+import { AgentActivityDashboard } from '@/components/agent-activity-dashboard'
 
 interface Project {
   id: string
@@ -35,7 +36,7 @@ export default function AIManagerDashboard() {
   const [selectedProject, setSelectedProject] = useState('trendfarm')
   const [projects, setProjects] = useState<Project[]>([])
   const [loading, setLoading] = useState(true)
-  const [currentView, setCurrentView] = useState<'dashboard' | 'content'>('dashboard')
+  const [currentView, setCurrentView] = useState<'dashboard' | 'content' | 'activity'>('dashboard')
   const [deploymentForm, setDeploymentForm] = useState({
     agent: '',
     task: '',
@@ -202,6 +203,17 @@ export default function AIManagerDashboard() {
               Agents
             </button>
             <button
+              onClick={() => setCurrentView('activity')}
+              className={`flex items-center gap-2 px-4 py-3 rounded-lg transition-all duration-200 ${
+                currentView === 'activity'
+                  ? 'bg-primary text-white'
+                  : 'bg-gray-900 border border-gray-700 hover:border-primary text-gray-300 hover:text-white'
+              }`}
+            >
+              <BarChart3 className="w-4 h-4" />
+              Activity
+            </button>
+            <button
               onClick={() => setCurrentView('content')}
               className={`flex items-center gap-2 px-4 py-3 rounded-lg transition-all duration-200 ${
                 currentView === 'content'
@@ -331,6 +343,11 @@ export default function AIManagerDashboard() {
                 </div>
               </div>
             </div>
+          </div>
+        ) : currentView === 'activity' ? (
+          /* Agent Activity Dashboard */
+          <div className="bg-gray-900 rounded-xl border border-gray-800 overflow-hidden p-6">
+            <AgentActivityDashboard projectId={selectedProject} />
           </div>
         ) : (
           /* Content Hub */
