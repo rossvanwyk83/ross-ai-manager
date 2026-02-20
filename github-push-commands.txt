@@ -1,0 +1,14 @@
+#!/bin/bash
+# GitHub Push Commands
+# Replace 'yourusername' with your actual GitHub username
+
+cd /data/.openclaw/workspace/ai-manager-app
+
+# Add GitHub remote (replace 'yourusername' with your GitHub username)
+git remote add origin https://github.com/yourusername/ai-manager.git
+
+# Push to GitHub
+git push -u origin main
+
+echo "✅ Pushed to GitHub successfully!"
+echo "📱 Repository URL: https://github.com/yourusername/ai-manager"

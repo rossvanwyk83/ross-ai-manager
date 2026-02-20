@@ -1,0 +1,12 @@
+# Vercel Environment Variables
+# Add these in your Vercel Dashboard > Settings > Environment Variables
+
+OPENCLAW_GATEWAY_URL=http://YOUR_SERVER_IP:18790
+OPENCLAW_AUTH_TOKEN=your-gateway-token-here  
+OPENCLAW_API_KEY=optional-api-key
+
+# Example:
+# OPENCLAW_GATEWAY_URL=http://142.93.45.123:18790
+# OPENCLAW_AUTH_TOKEN=abc123xyz789
+
+# Note: Replace YOUR_SERVER_IP with the actual IP address of your OpenClaw server
