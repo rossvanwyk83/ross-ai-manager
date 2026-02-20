@@ -160,7 +160,7 @@ export default function AIManagerDashboard() {
         {/* Header */}
         <header className="text-center mb-10 border-b border-gray-800 pb-8">
           <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-4">
-            🚀 AI Project Manager
+            🚀 AI Project Manager v2.0
           </h1>
           <p className="text-gray-400 text-lg">Deploy specialized AI agent teams for each business project</p>
         </header>
