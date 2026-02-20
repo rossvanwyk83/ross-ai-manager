@@ -1,30 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server'
-import fs from 'fs'
-import path from 'path'
+import { staticContent } from '@/lib/static-content'
 
-// Read content directly from the OpenClaw workspace
-function loadContentFromFile(businessId: string) {
+// Load content from static data (embedded at build time)
+function loadContentFromStatic(businessId: string) {
   try {
-    // Path to the content database file
-    const contentDbPath = '/data/.openclaw/workspace/content-database.json'
-    
-    if (!fs.existsSync(contentDbPath)) {
-      return { content: [], lastUpdated: new Date().toISOString(), count: 0 }
-    }
-
-    const data = fs.readFileSync(contentDbPath, 'utf8')
-    const database = JSON.parse(data)
-    
-    // Filter content by business ID
-    const businessContent = database.content.filter((item: any) => item.businessId === businessId)
+    // Get content for the specific business
+    const businessContent = staticContent[businessId as keyof typeof staticContent] || []
     
     return {
       content: businessContent,
-      lastUpdated: database.lastUpdated,
+      lastUpdated: new Date().toISOString(),
       count: businessContent.length
     }
   } catch (error) {
-    console.error('Error reading content database:', error)
+    console.error('Error loading static content:', error)
     return { content: [], lastUpdated: new Date().toISOString(), count: 0 }
   }
 }
@@ -39,7 +28,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Business ID is required' }, { status: 400 })
     }
     
-    const data = loadContentFromFile(businessId)
+    const data = loadContentFromStatic(businessId)
     
     return NextResponse.json(data)
     
