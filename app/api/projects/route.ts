@@ -46,6 +46,17 @@ const projects = [
       { id: 'quinn', name: 'Quinn', role: 'AI Strategy Consultant - Strategic thinker for SystemsFarm client transformations', status: 'ready' }
     ],
     stats: { agents: 1, active: 0, completed: 1 }
+  },
+  {
+    id: 'muon',
+    name: 'Muon Protocol',
+    description: 'Web3 validation layer - Comprehensive content marketing strategy for Muon protocol ecosystem',
+    type: 'web3',
+    agents: [
+      { id: 'research-intelligence', name: 'Research Intelligence Agent', role: 'Market analysis expert - Oracle failure analysis and competitive landscape research', status: 'ready' },
+      { id: 'content-factory', name: 'Content Factory Agent', role: 'Content creation powerhouse - Generated 68,000+ words across 6 formats for Muon marketing', status: 'completed' }
+    ],
+    stats: { agents: 2, active: 0, completed: 1 }
   }
 ]
 
