@@ -286,45 +286,125 @@ export function ChurchOSTestingDashboard() {
             ))}
           </div>
 
-          {/* Issues List */}
-          <div className="space-y-4">
-            {activeIssues.map((issue) => (
-              <div key={issue.id} className={`bg-gray-800 rounded-lg p-6 border ${getSeverityColor(issue.severity)}`}>
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className={`px-2 py-1 rounded text-xs font-medium uppercase ${getSeverityColor(issue.severity)}`}>
-                        {issue.severity}
-                      </span>
-                      <span className="text-gray-400 text-sm">{issue.module}</span>
-                    </div>
-                    <h4 className="text-lg font-bold text-white mb-2">{issue.title}</h4>
-                    <p className="text-gray-400">{issue.description}</p>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-sm text-gray-500">{formatTimestamp(issue.timestamp)}</div>
-                  </div>
+          {/* CRITICAL ISSUES - Small Groups */}
+          <div className="bg-red-900/20 border border-red-500/50 rounded-lg p-6">
+            <div className="flex items-start justify-between mb-4">
+              <div>
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="px-2 py-1 rounded text-xs font-medium uppercase bg-red-900/50 text-red-300">
+                    CRITICAL
+                  </span>
+                  <span className="text-gray-400 text-sm">Small Groups</span>
                 </div>
-
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <h5 className="font-medium text-white mb-2">Reproduction Steps:</h5>
-                    <ol className="text-sm text-gray-400 space-y-1">
-                      {issue.reproduction.map((step, index) => (
-                        <li key={index} className="flex">
-                          <span className="text-primary mr-2">{index + 1}.</span>
-                          {step}
-                        </li>
-                      ))}
-                    </ol>
-                  </div>
-                  <div>
-                    <h5 className="font-medium text-white mb-2">Recommendation:</h5>
-                    <p className="text-sm text-green-400">{issue.recommendation}</p>
-                  </div>
-                </div>
+                <h4 className="text-lg font-bold text-white mb-2">Member Deletion Causes Permanent Data Loss</h4>
+                <p className="text-red-300 font-medium mb-2">🚨 PRODUCTION BLOCKER - IMMEDIATE FIX REQUIRED</p>
+                <p className="text-gray-400">When removing a member from a small group, the system permanently deletes ALL historical data including attendance records, meeting notes, and participation history.</p>
               </div>
-            ))}
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-4">
+              <div>
+                <h5 className="font-medium text-white mb-2">Reproduction Steps:</h5>
+                <ol className="text-sm text-gray-300 space-y-1">
+                  <li className="flex"><span className="text-red-400 mr-2">1.</span>Navigate to Small Groups section</li>
+                  <li className="flex"><span className="text-red-400 mr-2">2.</span>Select group with members who have attendance history</li>
+                  <li className="flex"><span className="text-red-400 mr-2">3.</span>Go to member management</li>
+                  <li className="flex"><span className="text-red-400 mr-2">4.</span>Remove/delete a member from the group</li>
+                  <li className="flex"><span className="text-red-400 mr-2">5.</span><strong>RESULT: All historical data permanently lost</strong></li>
+                </ol>
+              </div>
+              <div>
+                <h5 className="font-medium text-white mb-2">Business Impact:</h5>
+                <ul className="text-sm text-red-300 space-y-1">
+                  <li>• Violates data protection principles</li>
+                  <li>• Damages user trust permanently</li>
+                  <li>• Potential legal liability for churches</li>
+                  <li>• Makes attendance tracking useless</li>
+                </ul>
+                <h5 className="font-medium text-white mb-2 mt-4">Fix Required:</h5>
+                <p className="text-sm text-green-400">Implement soft deletion system with data preservation. Add confirmation dialog with clear warning about data impact.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* MAJOR ISSUES - Services */}
+          <div className="bg-orange-900/20 border border-orange-500/50 rounded-lg p-6">
+            <div className="flex items-start justify-between mb-4">
+              <div>
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="px-2 py-1 rounded text-xs font-medium uppercase bg-orange-900/50 text-orange-300">
+                    MAJOR
+                  </span>
+                  <span className="text-gray-400 text-sm">Services</span>
+                </div>
+                <h4 className="text-lg font-bold text-white mb-2">Recurring Service Creation Broken</h4>
+                <p className="text-gray-400">Churches cannot set up weekly or monthly recurring services. Only single services are created despite recurrence settings.</p>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-4">
+              <div>
+                <h5 className="font-medium text-white mb-2">Reproduction Steps:</h5>
+                <ol className="text-sm text-gray-300 space-y-1">
+                  <li className="flex"><span className="text-orange-400 mr-2">1.</span>Navigate to Services section</li>
+                  <li className="flex"><span className="text-orange-400 mr-2">2.</span>Click "Create New Service"</li>
+                  <li className="flex"><span className="text-orange-400 mr-2">3.</span>Fill service details and set to "Weekly"</li>
+                  <li className="flex"><span className="text-orange-400 mr-2">4.</span>Set end date for series</li>
+                  <li className="flex"><span className="text-orange-400 mr-2">5.</span><strong>RESULT: Only single service created</strong></li>
+                </ol>
+              </div>
+              <div>
+                <h5 className="font-medium text-white mb-2">Additional Major Issues:</h5>
+                <ul className="text-sm text-orange-300 space-y-1">
+                  <li>• Schedule conflict detection missing</li>
+                  <li>• Staff double-booking allowed</li>
+                  <li>• No facility conflict checking</li>
+                  <li>• Staff assignment validation problems</li>
+                </ul>
+                <h5 className="font-medium text-white mb-2 mt-4">Fix Timeline:</h5>
+                <p className="text-sm text-green-400">1-2 weeks focused development for core recurring functionality</p>
+              </div>
+            </div>
+          </div>
+
+          {/* MINOR ISSUES - Worship */}
+          <div className="bg-blue-900/20 border border-blue-500/50 rounded-lg p-6">
+            <div className="flex items-start justify-between mb-4">
+              <div>
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="px-2 py-1 rounded text-xs font-medium uppercase bg-green-900/50 text-green-300">
+                    READY
+                  </span>
+                  <span className="text-gray-400 text-sm">Worship</span>
+                </div>
+                <h4 className="text-lg font-bold text-white mb-2">Production Ready - Minor Improvements Only</h4>
+                <p className="text-gray-400">Worship section is fully functional with excellent core features. Only minor enhancements needed.</p>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-4">
+              <div>
+                <h5 className="font-medium text-white mb-2">What Works Perfectly:</h5>
+                <ul className="text-sm text-green-300 space-y-1">
+                  <li>• Song management (add/edit/delete)</li>
+                  <li>• Setlist creation and organization</li>
+                  <li>• Lyrics display and formatting</li>
+                  <li>• CCLI number tracking</li>
+                  <li>• Data persistence and reliability</li>
+                </ul>
+              </div>
+              <div>
+                <h5 className="font-medium text-white mb-2">Minor Improvements:</h5>
+                <ul className="text-sm text-blue-300 space-y-1">
+                  <li>• Song search case-sensitivity</li>
+                  <li>• Limited export functionality</li>
+                  <li>• Key transposition feature</li>
+                  <li>• Chord chart uploads</li>
+                </ul>
+                <h5 className="font-medium text-white mb-2 mt-4">Recommendation:</h5>
+                <p className="text-sm text-green-400">✅ DEPLOY IMMEDIATELY - This section is production ready</p>
+              </div>
+            </div>
           </div>
         </div>
       )}
@@ -393,54 +473,143 @@ export function ChurchOSTestingDashboard() {
       {/* Suggestions View */}
       {selectedView === 'suggestions' && (
         <div className="space-y-6">
-          <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
-            <h3 className="text-lg font-bold text-primary mb-4 flex items-center gap-2">
-              <Eye className="w-5 h-5" />
-              UX Improvement Suggestions
+          {/* Production Readiness Summary */}
+          <div className="bg-red-900/20 border border-red-500/50 rounded-lg p-6">
+            <h3 className="text-lg font-bold text-red-300 mb-4 flex items-center gap-2">
+              <AlertTriangle className="w-5 h-5" />
+              Production Readiness Assessment
             </h3>
-            <div className="space-y-4">
-              <div className="border-l-4 border-blue-500 bg-blue-900/10 p-4 rounded-r-lg">
-                <h4 className="font-medium text-white mb-2">Registration Modal Enhancement</h4>
-                <p className="text-gray-400 text-sm mb-2">The member registration modal could benefit from a progress indicator to show users their completion status.</p>
-                <div className="text-xs text-blue-400">Impact: Improved user experience, reduced abandonment</div>
+            <div className="grid md:grid-cols-3 gap-4">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-red-400 mb-2">🚫</div>
+                <div className="text-white font-medium">Small Groups</div>
+                <div className="text-red-400 text-sm">CRITICAL ISSUES</div>
+                <div className="text-xs text-gray-400 mt-1">Data loss risk</div>
               </div>
-              
-              <div className="border-l-4 border-green-500 bg-green-900/10 p-4 rounded-r-lg">
-                <h4 className="font-medium text-white mb-2">Loading States</h4>
-                <p className="text-gray-400 text-sm mb-2">Add loading spinners throughout the application to provide feedback during longer operations.</p>
-                <div className="text-xs text-green-400">Impact: Better perceived performance, clearer user feedback</div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-orange-400 mb-2">⚠️</div>
+                <div className="text-white font-medium">Services</div>
+                <div className="text-orange-400 text-sm">MAJOR ISSUES</div>
+                <div className="text-xs text-gray-400 mt-1">Recurring broken</div>
               </div>
-              
-              <div className="border-l-4 border-purple-500 bg-purple-900/10 p-4 rounded-r-lg">
-                <h4 className="font-medium text-white mb-2">Dashboard Optimization</h4>
-                <p className="text-gray-400 text-sm mb-2">Consider implementing pagination or lazy loading for the dashboard when displaying over 500 members.</p>
-                <div className="text-xs text-purple-400">Impact: Improved performance, faster load times</div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-green-400 mb-2">✅</div>
+                <div className="text-white font-medium">Worship</div>
+                <div className="text-green-400 text-sm">PRODUCTION READY</div>
+                <div className="text-xs text-gray-400 mt-1">Deploy immediately</div>
               </div>
             </div>
           </div>
 
+          {/* Development Roadmap */}
+          <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
+            <h3 className="text-lg font-bold text-primary mb-4 flex items-center gap-2">
+              <Calendar className="w-5 h-5" />
+              Recommended Development Roadmap
+            </h3>
+            <div className="space-y-4">
+              <div className="border-l-4 border-red-500 bg-red-900/10 p-4 rounded-r-lg">
+                <h4 className="font-medium text-white mb-2">PHASE 1: Critical Fixes (Week 1-2)</h4>
+                <ul className="text-sm text-gray-300 space-y-1">
+                  <li>• 🚨 <strong>URGENT:</strong> Fix Small Groups data loss issue</li>
+                  <li>• 🔶 <strong>HIGH:</strong> Repair Services recurring service creation</li>
+                  <li>• 🔶 <strong>HIGH:</strong> Implement basic schedule conflict detection</li>
+                  <li>• 🔧 Add essential time validation throughout</li>
+                </ul>
+                <div className="text-xs text-red-400 mt-2">Priority: Production blocking issues must be resolved</div>
+              </div>
+              
+              <div className="border-l-4 border-orange-500 bg-orange-900/10 p-4 rounded-r-lg">
+                <h4 className="font-medium text-white mb-2">PHASE 2: Quality & Launch Prep (Week 3-4)</h4>
+                <ul className="text-sm text-gray-300 space-y-1">
+                  <li>• 🛡️ Add comprehensive error handling</li>
+                  <li>• ⚡ Improve user experience and workflows</li>
+                  <li>• 🧪 Comprehensive testing and validation</li>
+                  <li>• 📚 User documentation and training materials</li>
+                </ul>
+                <div className="text-xs text-orange-400 mt-2">Priority: Production readiness and user experience</div>
+              </div>
+              
+              <div className="border-l-4 border-green-500 bg-green-900/10 p-4 rounded-r-lg">
+                <h4 className="font-medium text-white mb-2">PHASE 3: Enhancement Features (Post-Launch)</h4>
+                <ul className="text-sm text-gray-300 space-y-1">
+                  <li>• 🎵 Worship: Key transposition and chord charts</li>
+                  <li>• 📊 Advanced analytics and reporting</li>
+                  <li>• 📱 Mobile optimization and responsive design</li>
+                  <li>• 🔗 Third-party integration (calendar, presentation software)</li>
+                </ul>
+                <div className="text-xs text-green-400 mt-2">Priority: Competitive advantage and user delight</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Launch Options */}
+          <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
+            <h3 className="text-lg font-bold text-primary mb-4 flex items-center gap-2">
+              <TrendingUp className="w-5 h-5" />
+              Launch Strategy Options
+            </h3>
+            <div className="grid md:grid-cols-3 gap-4">
+              <div className="bg-green-900/20 border border-green-500/50 rounded-lg p-4">
+                <h4 className="font-medium text-green-300 mb-2">Option A: Delayed Launch</h4>
+                <div className="text-green-400 text-sm mb-2">RECOMMENDED</div>
+                <ul className="text-xs text-gray-400 space-y-1">
+                  <li>• Wait 2-4 weeks for all fixes</li>
+                  <li>• Launch with solid foundation</li>
+                  <li>• Reduced support burden</li>
+                  <li>• Professional reputation maintained</li>
+                </ul>
+                <div className="text-xs text-green-400 mt-2">Best long-term strategy</div>
+              </div>
+              
+              <div className="bg-blue-900/20 border border-blue-500/50 rounded-lg p-4">
+                <h4 className="font-medium text-blue-300 mb-2">Option B: Phased Launch</h4>
+                <div className="text-blue-400 text-sm mb-2">ALTERNATIVE</div>
+                <ul className="text-xs text-gray-400 space-y-1">
+                  <li>• Deploy Worship immediately</li>
+                  <li>• Add Services after fixes (2 weeks)</li>
+                  <li>• Add Small Groups after critical fixes (4 weeks)</li>
+                </ul>
+                <div className="text-xs text-blue-400 mt-2">Immediate market entry</div>
+              </div>
+              
+              <div className="bg-red-900/20 border border-red-500/50 rounded-lg p-4">
+                <h4 className="font-medium text-red-300 mb-2">Option C: Immediate Launch</h4>
+                <div className="text-red-400 text-sm mb-2">NOT RECOMMENDED</div>
+                <ul className="text-xs text-gray-400 space-y-1">
+                  <li>• High risk due to data loss issue</li>
+                  <li>• Could damage user trust permanently</li>
+                  <li>• Significant support burden</li>
+                  <li>• Poor user experience</li>
+                </ul>
+                <div className="text-xs text-red-400 mt-2">Unacceptable risk level</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Resource Requirements */}
           <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
             <h3 className="text-lg font-bold text-primary mb-4 flex items-center gap-2">
               <Settings className="w-5 h-5" />
-              Modal Content Recommendations
+              Resource Requirements
             </h3>
             <div className="grid md:grid-cols-2 gap-4">
               <div className="bg-gray-900 rounded-lg p-4">
-                <h4 className="font-medium text-white mb-2">Profile Edit Modal</h4>
+                <h4 className="font-medium text-white mb-2">Development Team (2-4 weeks)</h4>
                 <ul className="text-sm text-gray-400 space-y-1">
-                  <li>• Consider tabbed interface for large forms</li>
-                  <li>• Add auto-save functionality</li>
-                  <li>• Include field validation feedback</li>
-                  <li>• Add cancel confirmation dialog</li>
+                  <li>• Senior Developer: 2-3 weeks full-time</li>
+                  <li>• QA Testing: 1 week comprehensive testing</li>
+                  <li>• UI/UX Designer: 0.5 weeks for improved flows</li>
+                  <li>• Product Manager: Ongoing prioritization</li>
                 </ul>
               </div>
               <div className="bg-gray-900 rounded-lg p-4">
-                <h4 className="font-medium text-white mb-2">Family Link Modal</h4>
+                <h4 className="font-medium text-white mb-2">Infrastructure & Support</h4>
                 <ul className="text-sm text-gray-400 space-y-1">
-                  <li>• Add relationship type explanations</li>
-                  <li>• Include relationship visualization</li>
-                  <li>• Provide quick-add family templates</li>
-                  <li>• Add bulk family member import</li>
+                  <li>• Enhanced data backup systems</li>
+                  <li>• Error tracking and monitoring</li>
+                  <li>• User documentation and guides</li>
+                  <li>• Church staff training materials</li>
                 </ul>
               </div>
             </div>
