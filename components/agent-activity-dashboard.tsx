@@ -11,6 +11,9 @@ export function AgentActivityDashboard({ projectId }: AgentActivityDashboardProp
   const [selectedView, setSelectedView] = useState<'overview' | 'recent' | 'agents' | 'training' | 'testing'>('overview')
   const [selectedAgent, setSelectedAgent] = useState<string | null>(null)
   
+  // Debug log to see what projectId we're getting
+  console.log('AgentActivityDashboard projectId:', projectId)
+  
   const agentActivity = getAgentActivity(projectId)
   const recentDeployments = getRecentDeployments(projectId)
   
@@ -72,19 +75,17 @@ export function AgentActivityDashboard({ projectId }: AgentActivityDashboardProp
           >
             🎯 Training
           </button>
-          {projectId === 'churchos' && (
-            <button
-              onClick={() => setSelectedView('testing')}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                selectedView === 'testing'
-                  ? 'bg-primary text-white'
-                  : 'bg-gray-800 text-gray-300 hover:text-white'
-              }`}
-            >
-              <Bug className="w-4 h-4 inline mr-1" />
-              Testing
-            </button>
-          )}
+          <button
+            onClick={() => setSelectedView('testing')}
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+              selectedView === 'testing'
+                ? 'bg-primary text-white'
+                : 'bg-gray-800 text-gray-300 hover:text-white'
+            }`}
+          >
+            <Bug className="w-4 h-4 inline mr-1" />
+            Testing
+          </button>
         </div>
       </div>
 
@@ -506,8 +507,13 @@ export function AgentActivityDashboard({ projectId }: AgentActivityDashboardProp
       )}
 
       {/* ChurchOS Testing View */}
-      {selectedView === 'testing' && projectId === 'churchos' && (
-        <ChurchOSTestingDashboard />
+      {selectedView === 'testing' && (
+        <div>
+          <div className="mb-4 p-4 bg-yellow-900/20 border border-yellow-500/50 rounded-lg">
+            <p className="text-yellow-300">Debug: Project ID = "{projectId}"</p>
+          </div>
+          <ChurchOSTestingDashboard />
+        </div>
       )}
     </div>
   )
