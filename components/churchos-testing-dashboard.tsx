@@ -413,7 +413,7 @@ export function ChurchOSTestingDashboard() {
               
               <div className="border-l-4 border-purple-500 bg-purple-900/10 p-4 rounded-r-lg">
                 <h4 className="font-medium text-white mb-2">Dashboard Optimization</h4>
-                <p className="text-gray-400 text-sm mb-2">Consider implementing pagination or lazy loading for the dashboard when displaying >500 members.</p>
+                <p className="text-gray-400 text-sm mb-2">Consider implementing pagination or lazy loading for the dashboard when displaying over 500 members.</p>
                 <div className="text-xs text-purple-400">Impact: Improved performance, faster load times</div>
               </div>
             </div>
