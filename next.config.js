@@ -11,4 +11,4 @@ const nextConfig = {
   },
 }
 
-module.exports = nextConfig
+module.exports = nextConfig/* Force deployment Wed Feb 25 11:29:55 UTC 2026 */
