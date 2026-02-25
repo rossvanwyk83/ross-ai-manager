@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
-import { Clock, CheckCircle, AlertCircle, Activity, Calendar, TrendingUp, BookOpen, Target, BarChart3, Brain } from 'lucide-react'
+import { Clock, CheckCircle, AlertCircle, Activity, Calendar, TrendingUp, BookOpen, Target, BarChart3, Brain, Bug } from 'lucide-react'
 import { AgentActivity, AgentDeployment, getAgentActivity, getRecentDeployments, formatDuration, formatTimestamp, truncateResult } from '@/lib/agent-activity'
+import { ChurchOSTestingDashboard } from './churchos-testing-dashboard'
 
 interface AgentActivityDashboardProps {
   projectId: string
 }
 
 export function AgentActivityDashboard({ projectId }: AgentActivityDashboardProps) {
-  const [selectedView, setSelectedView] = useState<'overview' | 'recent' | 'agents' | 'training'>('overview')
+  const [selectedView, setSelectedView] = useState<'overview' | 'recent' | 'agents' | 'training' | 'testing'>('overview')
   const [selectedAgent, setSelectedAgent] = useState<string | null>(null)
   
   const agentActivity = getAgentActivity(projectId)
@@ -71,6 +72,19 @@ export function AgentActivityDashboard({ projectId }: AgentActivityDashboardProp
           >
             🎯 Training
           </button>
+          {projectId === 'churchos' && (
+            <button
+              onClick={() => setSelectedView('testing')}
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                selectedView === 'testing'
+                  ? 'bg-primary text-white'
+                  : 'bg-gray-800 text-gray-300 hover:text-white'
+              }`}
+            >
+              <Bug className="w-4 h-4 inline mr-1" />
+              Testing
+            </button>
+          )}
         </div>
       </div>
 
@@ -489,6 +503,11 @@ export function AgentActivityDashboard({ projectId }: AgentActivityDashboardProp
             </div>
           </div>
         </div>
+      )}
+
+      {/* ChurchOS Testing View */}
+      {selectedView === 'testing' && projectId === 'churchos' && (
+        <ChurchOSTestingDashboard />
       )}
     </div>
   )

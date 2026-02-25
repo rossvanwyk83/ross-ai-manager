@@ -90,6 +90,69 @@ export const mockAgentActivity: AgentActivity[] = [
     totalCompleted: 0,
     totalRuntime: 0,
     deployments: []
+  },
+  {
+    agentId: 'atlas',
+    agentName: 'Atlas',
+    projectId: 'churchos',
+    totalDeployments: 3,
+    totalCompleted: 3,
+    totalRuntime: 847,
+    lastActive: '2026-02-25T12:15:00Z',
+    averageDuration: 282,
+    deployments: [
+      {
+        id: 'test_003',
+        agentId: 'atlas',
+        agentName: 'Atlas',
+        projectId: 'churchos',
+        task: 'Complete UI regression testing after authentication module updates',
+        status: 'completed',
+        deployedAt: '2026-02-25T12:10:00Z',
+        completedAt: '2026-02-25T12:15:00Z',
+        duration: 300,
+        result: '# ChurchOS UI Regression Test Report\n\n## Authentication Module Testing: ✅ PASSED\n\n### Tests Executed:\n- Login flow: All browsers ✅\n- Registration process: Desktop & mobile ✅\n- Password reset: Email delivery confirmed ✅\n- Session management: Timeout handling correct ✅\n\n### Issues Found: 0 Critical, 1 Minor\n\n**Minor Issue:**\n- Mobile login button slightly misaligned on iOS Safari\n- Recommendation: Adjust CSS padding by 2px\n\n### Performance:\n- Login response time: 1.2s (Target: <2s) ✅\n- Registration completion: 2.1s (Target: <3s) ✅\n\n### UX Recommendations:\n1. Add loading spinner during login process\n2. Improve password strength indicator visibility\n3. Consider "Remember Me" checkbox positioning\n\n**Overall Status: READY FOR PRODUCTION**',
+        tokens: {
+          input: 150,
+          output: 800,
+          total: 950
+        }
+      },
+      {
+        id: 'test_002',
+        agentId: 'atlas',
+        agentName: 'Atlas',
+        projectId: 'churchos',
+        task: 'Comprehensive member management module testing',
+        status: 'completed',
+        deployedAt: '2026-02-25T10:30:00Z',
+        completedAt: '2026-02-25T10:37:00Z',
+        duration: 420,
+        result: '# Member Management Testing Report\n\n## Functionality Test Results: ✅ PASSED\n\n### Core Features Tested:\n- Member registration: All fields validate correctly ✅\n- Profile editing: Data persistence confirmed ✅\n- Directory search: Fast and accurate results ✅\n- Family linking: Relationships save properly ✅\n- Bulk import: CSV processing works ✅\n\n### Issues Identified: 2 Major, 3 Minor\n\n**Major Issues:**\n1. Profile photo upload fails for files >2MB\n   - Error: "Request timeout after 30s"\n   - Recommendation: Implement client-side image compression\n\n2. Directory pagination broken on mobile\n   - Next/Previous buttons non-responsive\n   - Affects user experience significantly\n\n**Minor Issues:**\n1. Member search case-sensitivity issue\n2. Date picker styling inconsistent\n3. Export button tooltip unclear\n\n### Modal Analysis:\n- Registration modal: Needs progress indicator\n- Profile edit modal: Consider tabbed interface for large forms\n- Family link modal: Add relationship type explanations\n\n**Status: REQUIRES FIXES BEFORE RELEASE**',
+        tokens: {
+          input: 200,
+          output: 1200,
+          total: 1400
+        }
+      },
+      {
+        id: 'test_001',
+        agentId: 'atlas',
+        agentName: 'Atlas',
+        projectId: 'churchos',
+        task: 'Initial comprehensive application testing - all modules',
+        status: 'completed',
+        deployedAt: '2026-02-25T08:45:00Z',
+        completedAt: '2026-02-25T08:47:00Z',
+        duration: 127,
+        result: '# ChurchOS Initial Testing Report\n\n## Application Overview Test: ✅ BASELINE ESTABLISHED\n\n### Modules Tested:\n- Authentication: ✅ Functional\n- Member Management: ⚠️ Minor issues\n- Event System: ✅ Functional  \n- Communications: 🔧 Needs attention\n- Financial: ✅ Functional\n- Admin Dashboard: ✅ Functional\n\n### Critical Findings:\n**No Critical Issues** - Application stable for development testing\n\n### Major Areas for Improvement:\n1. **Communication Module:**\n   - Email delivery confirmation missing\n   - SMS integration needs testing\n   - Notification preferences unclear\n\n2. **Performance Optimization:**\n   - Dashboard loads slowly with >500 members\n   - Consider pagination or lazy loading\n\n3. **Mobile Responsiveness:**\n   - Several modals need mobile optimization\n   - Navigation menu behavior inconsistent\n\n### Recommendations:\n1. Implement comprehensive error handling\n2. Add loading states throughout application\n3. Create consistent modal design patterns\n4. Optimize database queries for performance\n\n**Next Testing Priority: Deep dive into communication module**',
+        tokens: {
+          input: 180,
+          output: 950,
+          total: 1130
+        }
+      }
+    ]
   }
 ]
 

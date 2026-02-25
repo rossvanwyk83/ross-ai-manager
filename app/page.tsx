@@ -80,9 +80,10 @@ export default function AIManagerDashboard() {
       description: 'App development with Tom - modern church management and community engagement',
       type: 'product',
       agents: [
-        { id: 'grace', name: 'Grace', role: 'Product Manager - Community-focused strategist for ChurchOS solutions', status: 'ready' }
+        { id: 'grace', name: 'Grace', role: 'Product Manager - Community-focused strategist for ChurchOS solutions', status: 'ready' },
+        { id: 'atlas', name: 'Atlas', role: 'Testing Intelligence Agent - Comprehensive automated testing and quality assurance for all ChurchOS development stages', status: 'running' }
       ],
-      stats: { agents: 1, active: 0, completed: 3 }
+      stats: { agents: 2, active: 1, completed: 3 }
     },
     {
       id: 'shieldmyshop',
