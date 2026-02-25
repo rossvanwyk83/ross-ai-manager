@@ -95,12 +95,29 @@ export const mockAgentActivity: AgentActivity[] = [
     agentId: 'atlas',
     agentName: 'Atlas',
     projectId: 'churchos',
-    totalDeployments: 3,
-    totalCompleted: 3,
-    totalRuntime: 847,
+    totalDeployments: 4,
+    totalCompleted: 4,
+    totalRuntime: 1447,
     lastActive: '2026-02-25T12:15:00Z',
-    averageDuration: 282,
+    averageDuration: 362,
     deployments: [
+      {
+        id: 'test_004',
+        agentId: 'atlas',
+        agentName: 'Atlas',
+        projectId: 'churchos',
+        task: 'Comprehensive Ministry Sections Testing: Services, Worship, Small Groups',
+        status: 'completed',
+        deployedAt: '2026-02-25T12:05:00Z',
+        completedAt: '2026-02-25T12:15:00Z',
+        duration: 600,
+        result: '# ChurchOS Ministry Sections - Comprehensive Testing Report\n\n## Executive Summary: 🚫 NOT PRODUCTION READY\n\n### Critical Issues Found: 1\n### Major Issues Found: 3  \n### Minor Issues Found: 3\n\n---\n\n## 🚫 SMALL GROUPS SECTION - CRITICAL ISSUES:\n\n**🚨 CRITICAL: Data Loss Risk**\n- Member deletion permanently removes attendance history\n- No soft deletion or data retention\n- **IMMEDIATE FIX REQUIRED**\n\n**Major Issues:**\n- Schedule conflict detection missing\n- No validation on group capacity\n- Leader permission system needs testing\n\n---\n\n## ⚠️ SERVICES SECTION - MAJOR ISSUES:\n\n**Major Issues:**\n- Recurring service creation likely broken\n- Schedule conflict detection missing\n- Staff assignment validation needed\n\n**Minor Issues:**\n- Time validation missing (end before start)\n- No bulk creation capabilities\n\n---\n\n## ✅ WORSHIP SECTION - MOSTLY FUNCTIONAL:\n\n**Minor Issues:**\n- Song search case-sensitivity\n- Missing key transposition feature\n- Export functionality needed\n\n**Suggestions:**\n- Add chord chart uploads\n- Implement CCLI reporting automation\n- Create setlist templates\n\n---\n\n## 📊 Monday.com Integration: ✅ DEPLOYED\n- Testing group created: group_mm0x21gb\n- 4 testing items added to board\n- Real-time progress tracking active\n- Board URL: https://trendfarm-squad.monday.com/boards/5091670404\n\n## 🎯 RECOMMENDED ACTION PLAN:\n1. **URGENT:** Fix Small Groups data loss issue\n2. **HIGH:** Repair Services recurring events\n3. **MEDIUM:** Add comprehensive error handling\n4. **LOW:** Implement UX improvements\n\n**Production Readiness: ❌ CRITICAL FIXES REQUIRED**',
+        tokens: {
+          input: 200,
+          output: 1200,
+          total: 1400
+        }
+      },
       {
         id: 'test_003',
         agentId: 'atlas',
