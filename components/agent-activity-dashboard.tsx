@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Clock, CheckCircle, AlertCircle, Activity, Calendar, TrendingUp } from 'lucide-react'
+import { Clock, CheckCircle, AlertCircle, Activity, Calendar, TrendingUp, BookOpen, Target, BarChart3, Brain } from 'lucide-react'
 import { AgentActivity, AgentDeployment, getAgentActivity, getRecentDeployments, formatDuration, formatTimestamp, truncateResult } from '@/lib/agent-activity'
 
 interface AgentActivityDashboardProps {
@@ -7,7 +7,7 @@ interface AgentActivityDashboardProps {
 }
 
 export function AgentActivityDashboard({ projectId }: AgentActivityDashboardProps) {
-  const [selectedView, setSelectedView] = useState<'overview' | 'recent' | 'agents'>('overview')
+  const [selectedView, setSelectedView] = useState<'overview' | 'recent' | 'agents' | 'training'>('overview')
   const [selectedAgent, setSelectedAgent] = useState<string | null>(null)
   
   const agentActivity = getAgentActivity(projectId)
@@ -30,7 +30,7 @@ export function AgentActivityDashboard({ projectId }: AgentActivityDashboardProp
         </div>
         
         {/* View Toggle */}
-        <div className="flex gap-2">
+        <div className="flex gap-2 flex-wrap">
           <button
             onClick={() => setSelectedView('overview')}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
@@ -60,6 +60,16 @@ export function AgentActivityDashboard({ projectId }: AgentActivityDashboardProp
             }`}
           >
             Agent Details
+          </button>
+          <button
+            onClick={() => setSelectedView('training')}
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+              selectedView === 'training'
+                ? 'bg-primary text-white'
+                : 'bg-gray-800 text-gray-300 hover:text-white'
+            }`}
+          >
+            🎯 Training
           </button>
         </div>
       </div>
@@ -259,6 +269,225 @@ export function AgentActivityDashboard({ projectId }: AgentActivityDashboardProp
               )}
             </div>
           ))}
+        </div>
+      )}
+
+      {/* Training System View */}
+      {selectedView === 'training' && (
+        <div className="space-y-6">
+          {/* Training Stats Overview */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
+              <div className="flex items-center gap-2 mb-2">
+                <Brain className="w-4 h-4 text-purple-500" />
+                <span className="text-gray-400 text-sm">Training Sessions Today</span>
+              </div>
+              <div className="text-2xl font-bold text-white">3/3</div>
+              <div className="text-xs text-green-400 mt-1">✅ All Complete</div>
+            </div>
+            
+            <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
+              <div className="flex items-center gap-2 mb-2">
+                <Target className="w-4 h-4 text-blue-500" />
+                <span className="text-gray-400 text-sm">Active Agents</span>
+              </div>
+              <div className="text-2xl font-bold text-white">6</div>
+              <div className="text-xs text-blue-400 mt-1">ShieldMyShop + Muon</div>
+            </div>
+            
+            <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
+              <div className="flex items-center gap-2 mb-2">
+                <BarChart3 className="w-4 h-4 text-orange-500" />
+                <span className="text-gray-400 text-sm">Training Streak</span>
+              </div>
+              <div className="text-2xl font-bold text-white">6 days</div>
+              <div className="text-xs text-orange-400 mt-1">Since Feb 20th</div>
+            </div>
+          </div>
+
+          {/* Daily Training Schedule */}
+          <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
+            <h3 className="text-lg font-bold text-primary mb-4 flex items-center gap-2">
+              <Clock className="w-5 h-5" />
+              Daily Training Schedule (Ross's Time UTC+2)
+            </h3>
+            <div className="space-y-3">
+              <div className="flex items-center justify-between p-3 bg-gray-900 rounded-lg border-l-4 border-green-500">
+                <div className="flex items-center gap-3">
+                  <div className="text-green-400">✅</div>
+                  <div>
+                    <div className="font-medium text-white">Morning Intelligence Update</div>
+                    <div className="text-sm text-gray-400">9:00 AM - Market intelligence, competitor monitoring</div>
+                  </div>
+                </div>
+                <div className="text-sm text-green-400">Completed</div>
+              </div>
+              
+              <div className="flex items-center justify-between p-3 bg-gray-900 rounded-lg border-l-4 border-green-500">
+                <div className="flex items-center gap-3">
+                  <div className="text-green-400">✅</div>
+                  <div>
+                    <div className="font-medium text-white">Performance Analysis</div>
+                    <div className="text-sm text-gray-400">2:00 PM - Conversion metrics, A/B testing</div>
+                  </div>
+                </div>
+                <div className="text-sm text-green-400">Completed</div>
+              </div>
+              
+              <div className="flex items-center justify-between p-3 bg-gray-900 rounded-lg border-l-4 border-green-500">
+                <div className="flex items-center gap-3">
+                  <div className="text-green-400">✅</div>
+                  <div>
+                    <div className="font-medium text-white">Knowledge Enhancement</div>
+                    <div className="text-sm text-gray-400">6:00 PM - Campaign studies, agent updates</div>
+                  </div>
+                </div>
+                <div className="text-sm text-green-400">Completed</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Current Training Focus */}
+          <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
+            <h3 className="text-lg font-bold text-primary mb-4 flex items-center gap-2">
+              <BookOpen className="w-5 h-5" />
+              Current Training Focus - February 25th, 2026
+            </h3>
+            <div className="space-y-4">
+              <div className="bg-gray-900 rounded-lg p-4">
+                <h4 className="font-medium text-white mb-2">Tuesday Focus: Compliance Content Specialist + Muon Content Factory</h4>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <div className="text-sm text-gray-400 mb-2">ShieldMyShop Training:</div>
+                    <ul className="text-sm text-gray-300 space-y-1">
+                      <li>• Blog post ranking optimization</li>
+                      <li>• Competitor content analysis</li>
+                      <li>• SEO keyword targeting updates</li>
+                      <li>• Educational content templates</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <div className="text-sm text-gray-400 mb-2">Muon Training:</div>
+                    <ul className="text-sm text-gray-300 space-y-1">
+                      <li>• Web3 content strategy refinement</li>
+                      <li>• Developer-focused messaging</li>
+                      <li>• Oracle content optimization</li>
+                      <li>• Community engagement tactics</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Training Agents Portfolio */}
+          <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
+            <h3 className="text-lg font-bold text-primary mb-4 flex items-center gap-2">
+              <Activity className="w-5 h-5" />
+              Agent Training Portfolio
+            </h3>
+            <div className="grid md:grid-cols-2 gap-4">
+              <div>
+                <h4 className="font-medium text-white mb-3">ShieldMyShop Agents (4)</h4>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between p-2 bg-gray-900 rounded">
+                    <span className="text-gray-300 text-sm">Marketing Asset Factory</span>
+                    <span className="text-green-400 text-xs">✅ Active</span>
+                  </div>
+                  <div className="flex items-center justify-between p-2 bg-gray-900 rounded">
+                    <span className="text-gray-300 text-sm">Compliance Content Specialist</span>
+                    <span className="text-blue-400 text-xs">🎯 Today's Focus</span>
+                  </div>
+                  <div className="flex items-center justify-between p-2 bg-gray-900 rounded">
+                    <span className="text-gray-300 text-sm">Conversion Optimization Expert</span>
+                    <span className="text-green-400 text-xs">✅ Active</span>
+                  </div>
+                  <div className="flex items-center justify-between p-2 bg-gray-900 rounded">
+                    <span className="text-gray-300 text-sm">Email Sequence Architect</span>
+                    <span className="text-green-400 text-xs">✅ Active</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div>
+                <h4 className="font-medium text-white mb-3">Muon Protocol Agents (2)</h4>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between p-2 bg-gray-900 rounded">
+                    <span className="text-gray-300 text-sm">Research Intelligence Agent</span>
+                    <span className="text-green-400 text-xs">✅ Active</span>
+                  </div>
+                  <div className="flex items-center justify-between p-2 bg-gray-900 rounded">
+                    <span className="text-gray-300 text-sm">Content Factory Agent</span>
+                    <span className="text-blue-400 text-xs">🎯 Today's Focus</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Recent Training Activities */}
+          <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
+            <h3 className="text-lg font-bold text-primary mb-4 flex items-center gap-2">
+              <Calendar className="w-5 h-5" />
+              Recent Training Activities
+            </h3>
+            <div className="space-y-3">
+              <div className="flex items-start gap-3 p-3 bg-gray-900 rounded-lg">
+                <div className="w-2 h-2 bg-green-400 rounded-full mt-2"></div>
+                <div className="flex-1">
+                  <div className="flex items-center justify-between">
+                    <span className="text-white font-medium">Morning Intelligence Update</span>
+                    <span className="text-gray-500 text-sm">6:55 AM</span>
+                  </div>
+                  <p className="text-gray-400 text-sm">Market intelligence gathering, competitor analysis for ShieldMyShop + Muon agents</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-3 p-3 bg-gray-900 rounded-lg">
+                <div className="w-2 h-2 bg-green-400 rounded-full mt-2"></div>
+                <div className="flex-1">
+                  <div className="flex items-center justify-between">
+                    <span className="text-white font-medium">AI-Discovery Strategy Implementation</span>
+                    <span className="text-gray-500 text-sm">Feb 24</span>
+                  </div>
+                  <p className="text-gray-400 text-sm">Created llms.txt files for all 5 businesses - early mover advantage for AI system recommendations</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-3 p-3 bg-gray-900 rounded-lg">
+                <div className="w-2 h-2 bg-green-400 rounded-full mt-2"></div>
+                <div className="flex-1">
+                  <div className="flex items-center justify-between">
+                    <span className="text-white font-medium">Muon Content Delivery</span>
+                    <span className="text-gray-500 text-sm">Feb 23</span>
+                  </div>
+                  <p className="text-gray-400 text-sm">68,000+ words delivered across 6 formats. Developer-focused tweet published with 2,074+ validators message</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Next Training Schedule */}
+          <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
+            <h3 className="text-lg font-bold text-primary mb-4 flex items-center gap-2">
+              <TrendingUp className="w-5 h-5" />
+              Upcoming Training Schedule
+            </h3>
+            <div className="space-y-2">
+              <div className="flex items-center justify-between p-2 bg-gray-900 rounded">
+                <span className="text-gray-300">Tomorrow (Wed): Conversion Optimization + Web3 Competitive Analysis</span>
+                <span className="text-blue-400 text-sm">9 AM UTC+2</span>
+              </div>
+              <div className="flex items-center justify-between p-2 bg-gray-900 rounded">
+                <span className="text-gray-300">Thursday: Email Sequence + Muon Messaging Optimization</span>
+                <span className="text-gray-400 text-sm">Scheduled</span>
+              </div>
+              <div className="flex items-center justify-between p-2 bg-gray-900 rounded">
+                <span className="text-gray-300">Friday: Cross-Agent Integration (ShieldMyShop + Muon)</span>
+                <span className="text-gray-400 text-sm">Weekly Review</span>
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </div>
