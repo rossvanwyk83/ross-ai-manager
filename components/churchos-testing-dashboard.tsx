@@ -333,37 +333,99 @@ export function ChurchOSTestingDashboard() {
               <div>
                 <div className="flex items-center gap-2 mb-2">
                   <span className="px-2 py-1 rounded text-xs font-medium uppercase bg-orange-900/50 text-orange-300">
-                    MAJOR
+                    MAJOR ISSUES
                   </span>
-                  <span className="text-gray-400 text-sm">Services</span>
+                  <span className="text-gray-400 text-sm">Services Module - Complete Testing</span>
                 </div>
-                <h4 className="text-lg font-bold text-white mb-2">Recurring Service Creation Broken</h4>
-                <p className="text-gray-400">Churches cannot set up weekly or monthly recurring services. Only single services are created despite recurrence settings.</p>
+                <h4 className="text-lg font-bold text-white mb-2">Services Module - Multiple Critical Issues Found</h4>
+                <p className="text-gray-400">Comprehensive testing of service creation, scheduling, and template management revealed multiple blocking issues.</p>
               </div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-4">
-              <div>
-                <h5 className="font-medium text-white mb-2">Reproduction Steps:</h5>
-                <ol className="text-sm text-gray-300 space-y-1">
-                  <li className="flex"><span className="text-orange-400 mr-2">1.</span>Navigate to Services section</li>
-                  <li className="flex"><span className="text-orange-400 mr-2">2.</span>Click "Create New Service"</li>
-                  <li className="flex"><span className="text-orange-400 mr-2">3.</span>Fill service details and set to "Weekly"</li>
-                  <li className="flex"><span className="text-orange-400 mr-2">4.</span>Set end date for series</li>
-                  <li className="flex"><span className="text-orange-400 mr-2">5.</span><strong>RESULT: Only single service created</strong></li>
-                </ol>
+            <div className="space-y-4">
+              {/* Service Creation Issues */}
+              <div className="bg-gray-900 rounded-lg p-4">
+                <h5 className="font-medium text-orange-300 mb-2">🚫 Service Creation Issues:</h5>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <h6 className="text-white text-sm mb-1">Single Service Creation:</h6>
+                    <ul className="text-xs text-gray-400 space-y-1">
+                      <li>• ✅ Basic service details work (name, time, description)</li>
+                      <li>• ❌ End time validation missing (allows end before start)</li>
+                      <li>• ❌ No duration validation (1-minute or 12-hour services allowed)</li>
+                      <li>• ❌ Staff assignment has no availability checking</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h6 className="text-white text-sm mb-1">Recurring Services (BROKEN):</h6>
+                    <ul className="text-xs text-gray-400 space-y-1">
+                      <li>• 🚫 Weekly recurring: Creates only single service</li>
+                      <li>• 🚫 Monthly recurring: Pattern logic completely broken</li>
+                      <li>• 🚫 Custom recurring: End date handling fails</li>
+                      <li>• 🚫 Edit series vs single: No option provided</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
-              <div>
-                <h5 className="font-medium text-white mb-2">Additional Major Issues:</h5>
-                <ul className="text-sm text-orange-300 space-y-1">
-                  <li>• Schedule conflict detection missing</li>
-                  <li>• Staff double-booking allowed</li>
-                  <li>• No facility conflict checking</li>
-                  <li>• Staff assignment validation problems</li>
-                </ul>
-                <h5 className="font-medium text-white mb-2 mt-4">Fix Timeline:</h5>
-                <p className="text-sm text-green-400">1-2 weeks focused development for core recurring functionality</p>
+
+              {/* Schedule Management Issues */}
+              <div className="bg-gray-900 rounded-lg p-4">
+                <h5 className="font-medium text-orange-300 mb-2">📅 Schedule & Template Issues:</h5>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <h6 className="text-white text-sm mb-1">Schedule Templates:</h6>
+                    <ul className="text-xs text-gray-400 space-y-1">
+                      <li>• 🚫 NO template save functionality found</li>
+                      <li>• 🚫 No "Sunday Morning Service" preset</li>
+                      <li>• 🚫 Can't save order of service items</li>
+                      <li>• 🚫 No template library or favorites</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h6 className="text-white text-sm mb-1">Schedule Item Ordering:</h6>
+                    <ul className="text-xs text-gray-400 space-y-1">
+                      <li>• 🚫 Cannot reorder service items (no drag/drop)</li>
+                      <li>• 🚫 No up/down arrows for manual reordering</li>
+                      <li>• 🚫 Service flow cannot be customized</li>
+                      <li>• 🚫 Time allocation per item missing</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
+
+              {/* Resource Management Issues */}
+              <div className="bg-gray-900 rounded-lg p-4">
+                <h5 className="font-medium text-orange-300 mb-2">🏢 Resource & Conflict Management:</h5>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <h6 className="text-white text-sm mb-1">Facility Booking:</h6>
+                    <ul className="text-xs text-gray-400 space-y-1">
+                      <li>• 🚫 No room/facility conflict detection</li>
+                      <li>• 🚫 Multiple services can book same space</li>
+                      <li>• 🚫 No capacity management per facility</li>
+                      <li>• 🚫 No setup/breakdown time buffers</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h6 className="text-white text-sm mb-1">Staff Management:</h6>
+                    <ul className="text-xs text-gray-400 space-y-1">
+                      <li>• 🚫 Staff can be double-booked without warning</li>
+                      <li>• 🚫 No role validation (can assign anyone to anything)</li>
+                      <li>• 🚫 No notification system for assignments</li>
+                      <li>• 🚫 No backup/substitute staff system</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-4 p-3 bg-orange-900/10 rounded-lg">
+              <h5 className="text-orange-300 font-medium mb-1">Admin Priority Assessment:</h5>
+              <p className="text-sm text-gray-400">
+                <strong>CRITICAL FOR CHURCH OPERATIONS:</strong> Recurring services must work (churches schedule same service weekly for months). 
+                Template system essential for efficiency - admins don't want to recreate "Sunday 10 AM Service" every week with same order of worship.
+                Schedule reordering is daily admin task - service flow changes based on special events, guest speakers, etc.
+              </p>
             </div>
           </div>
 
@@ -583,6 +645,142 @@ export function ChurchOSTestingDashboard() {
                   <li>• Poor user experience</li>
                 </ul>
                 <div className="text-xs text-red-400 mt-2">Unacceptable risk level</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Admin-Focused UX Recommendations */}
+          <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
+            <h3 className="text-lg font-bold text-primary mb-4 flex items-center gap-2">
+              <Eye className="w-5 h-5" />
+              Admin User Experience Analysis - Critical Workflow Improvements
+            </h3>
+            <div className="space-y-6">
+              
+              {/* Services Admin Workflow */}
+              <div className="bg-purple-900/20 border border-purple-500/50 rounded-lg p-4">
+                <h4 className="font-medium text-purple-300 mb-3">🎯 Services Admin Perspective - "I need to plan Sunday services efficiently"</h4>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <h5 className="text-white text-sm mb-2">Admin Daily Tasks:</h5>
+                    <ul className="text-xs text-gray-300 space-y-1">
+                      <li>• Create next month's services in 5 minutes (not 2 hours)</li>
+                      <li>• Adjust service order based on guest speakers/special events</li>
+                      <li>• Ensure no conflicts between multiple services</li>
+                      <li>• Quickly duplicate last week's service with small changes</li>
+                      <li>• See who's assigned what at a glance</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="text-white text-sm mb-2">Missing Critical Features:</h5>
+                    <ul className="text-xs text-red-300 space-y-1">
+                      <li>• 🚫 "Quick Create from Template" button</li>
+                      <li>• 🚫 Drag-and-drop service item reordering</li>
+                      <li>• 🚫 "Copy Last Week" functionality</li>
+                      <li>• 🚫 Visual conflict warnings (red highlights)</li>
+                      <li>• 🚫 Bulk edit for service series</li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="mt-3 p-2 bg-purple-900/10 rounded">
+                  <p className="text-xs text-purple-200">
+                    <strong>Admin Pain Point:</strong> Currently need to manually create each service, assign same staff repeatedly, 
+                    and remember the exact order of worship elements. This should take 2 minutes, not 20 minutes per service.
+                  </p>
+                </div>
+              </div>
+
+              {/* Small Groups Admin Workflow */}
+              <div className="bg-blue-900/20 border border-blue-500/50 rounded-lg p-4">
+                <h4 className="font-medium text-blue-300 mb-3">👥 Small Groups Admin Perspective - "I need to manage 50+ groups without chaos"</h4>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <h5 className="text-white text-sm mb-2">Admin Weekly Tasks:</h5>
+                    <ul className="text-xs text-gray-300 space-y-1">
+                      <li>• Track attendance across all groups quickly</li>
+                      <li>• Move members between groups without losing history</li>
+                      <li>• Generate reports for pastors/leadership</li>
+                      <li>• Handle group splits and mergers smoothly</li>
+                      <li>• Schedule rooms and avoid conflicts</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="text-white text-sm mb-2">Critical UX Improvements Needed:</h5>
+                    <ul className="text-xs text-blue-300 space-y-1">
+                      <li>• 📊 Dashboard view: All groups, attendance trends</li>
+                      <li>• 🔄 "Transfer Member" (not delete and re-add)</li>
+                      <li>• 📈 Quick attendance entry (checkbox grid)</li>
+                      <li>• 🎯 Group health indicators (attendance, engagement)</li>
+                      <li>• 📝 Bulk actions for group management</li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="mt-3 p-2 bg-blue-900/10 rounded">
+                  <p className="text-xs text-blue-200">
+                    <strong>Admin Critical Need:</strong> Data preservation during member changes is NON-NEGOTIABLE. 
+                    Admins need historical reports to show group growth, identify struggling groups, and report to leadership.
+                  </p>
+                </div>
+              </div>
+
+              {/* Worship Admin Workflow */}
+              <div className="bg-green-900/20 border border-green-500/50 rounded-lg p-4">
+                <h4 className="font-medium text-green-300 mb-3">🎵 Worship Admin Perspective - "I need setlists ready for band rehearsal"</h4>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <h5 className="text-white text-sm mb-2">Admin Sunday Prep:</h5>
+                    <ul className="text-xs text-gray-300 space-y-1">
+                      <li>• Build setlist Tuesday, send to band Wednesday</li>
+                      <li>• Transpose keys for different vocalists</li>
+                      <li>• Print chord charts for musicians without tablets</li>
+                      <li>• Track song rotation (avoid repeating last month)</li>
+                      <li>• Match song themes to sermon series</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="text-white text-sm mb-2">High-Value Additions:</h5>
+                    <ul className="text-xs text-green-300 space-y-1">
+                      <li>• 📧 "Email Setlist to Band" button</li>
+                      <li>• 🎼 Auto key transposition display</li>
+                      <li>• 📄 Professional PDF export with chord charts</li>
+                      <li>• 📊 "Last played" date on each song</li>
+                      <li>• 🎭 Theme-based song suggestions</li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="mt-3 p-2 bg-green-900/10 rounded">
+                  <p className="text-xs text-green-200">
+                    <strong>Admin Efficiency:</strong> This section is closest to production-ready. 
+                    Export functionality would make it immediately useful for real church workflows.
+                  </p>
+                </div>
+              </div>
+
+              {/* Cross-Module Admin Needs */}
+              <div className="bg-yellow-900/20 border border-yellow-500/50 rounded-lg p-4">
+                <h4 className="font-medium text-yellow-300 mb-3">🔗 Cross-Module Admin Needs - "Everything should connect"</h4>
+                <div className="space-y-3">
+                  <div>
+                    <h5 className="text-white text-sm mb-2">Integration Points Admins Need:</h5>
+                    <ul className="text-xs text-gray-300 space-y-1">
+                      <li>• Link worship setlists to specific services</li>
+                      <li>• Show small group leaders in service staff assignments</li>
+                      <li>• Calendar view showing all events (services + group meetings)</li>
+                      <li>• Single dashboard showing conflicts across all modules</li>
+                      <li>• Member directory accessible from all sections</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="text-white text-sm mb-2">Admin Efficiency Features:</h5>
+                    <ul className="text-xs text-yellow-200 space-y-1">
+                      <li>• 📱 Mobile-friendly for on-the-go updates</li>
+                      <li>• ⚡ Keyboard shortcuts for power users</li>
+                      <li>• 📊 Weekly admin summary email</li>
+                      <li>• 🔄 Undo functionality for accidental changes</li>
+                      <li>• 🎯 Quick action bar: "Create Service", "Add Member", etc.</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
